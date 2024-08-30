@@ -3,10 +3,10 @@
 #include <cmath>
 #include <cstdlib> 
 
-extern const int screenWidth ;
-extern const int screenHeight ;
-extern const int boardSize ;
-extern const int cellSize ;
+extern const int screenWidth;
+extern const int screenHeight;
+extern const int boardSize;
+extern const int cellSize;
 
 extern const Color playersColors[4];
 
@@ -31,8 +31,8 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     DrawRectangle((screenWidth - boardSize) / 2, (screenHeight - boardSize) / 2, boardSize, boardSize, WHITE);
     // Draw safe zone
     DrawRectangle((screenWidth - boardSize + 2 * cellSize) / 2, (screenHeight - cellSize) / 2, 5 * cellSize, cellSize, playersColors[0]);
-    DrawRectangle((screenHeight - cellSize) / 2, (screenWidth + 3 * cellSize) / 2, cellSize, 5 * cellSize, playersColors[2]);
-    DrawRectangle((screenWidth + 3 * cellSize) / 2, (screenHeight - cellSize) / 2, 5 * cellSize, cellSize, playersColors[3]);
+    DrawRectangle((screenHeight - cellSize) / 2, (screenWidth + 3 * cellSize) / 2, cellSize, 5 * cellSize, playersColors[3]);
+    DrawRectangle((screenWidth + 3 * cellSize) / 2, (screenHeight - cellSize) / 2, 5 * cellSize, cellSize, playersColors[2]);
     DrawRectangle((screenHeight - cellSize) / 2, (screenHeight - boardSize + 2 * cellSize) / 2, cellSize, 5 * cellSize, playersColors[1]);
 
     //Draw stars in red home 
@@ -45,12 +45,12 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
 
     // draw stars in yellow home
     DrawStar((screenWidth + boardSize - 3 * cellSize) / 2, (screenHeight - 2 * cellSize) / 2, 17.5, 5, BLACK);
-    DrawStar((screenWidth + boardSize - 3 * cellSize) / 2, (screenHeight + 2 * cellSize) / 2, 17.5, 5, playersColors[3]);
+    DrawStar((screenWidth + boardSize - 3 * cellSize) / 2, (screenHeight + 2 * cellSize) / 2, 17.5, 5, playersColors[2]);
 
     // draw stars in blue home 
    //Draw stars in green home
     DrawStar((screenWidth + 2 * cellSize) / 2, (screenHeight + boardSize - 3 * cellSize) / 2, 17.5, 5, BLACK);
-    DrawStar((screenWidth - 2 * cellSize) / 2, (screenHeight + boardSize - 3 * cellSize) / 2, 17.5, 5, playersColors[2]);
+    DrawStar((screenWidth - 2 * cellSize) / 2, (screenHeight + boardSize - 3 * cellSize) / 2, 17.5, 5, playersColors[3]);
 
     // Draw grid lines
     for (int i = 0; i <= 15; i++) {
@@ -61,8 +61,8 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     // Draw home areas
     DrawRectangle((screenWidth - boardSize) / 2, (screenHeight - boardSize) / 2, cellSize * 6, cellSize * 6, playersColors[0]); // Red Home
     DrawRectangle((screenWidth + boardSize) / 2 - cellSize * 6, (screenHeight - boardSize) / 2, cellSize * 6, cellSize * 6, playersColors[1]); // Green Home
-    DrawRectangle((screenWidth - boardSize) / 2, (screenHeight + boardSize) / 2 - cellSize * 6, cellSize * 6, cellSize * 6, playersColors[2]); // Blue Home
-    DrawRectangle((screenWidth + boardSize) / 2 - cellSize * 6, (screenHeight + boardSize) / 2 - cellSize * 6, cellSize * 6, cellSize * 6, playersColors[3]); // Yellow Home
+    DrawRectangle((screenWidth - boardSize) / 2, (screenHeight + boardSize) / 2 - cellSize * 6, cellSize * 6, cellSize * 6, playersColors[3]); // Blue Home
+    DrawRectangle((screenWidth + boardSize) / 2 - cellSize * 6, (screenHeight + boardSize) / 2 - cellSize * 6, cellSize * 6, cellSize * 6, playersColors[2]); // Yellow Home
     // Inside home areas
     DrawRectangle((screenWidth - boardSize + 2 * cellSize) / 2, (screenHeight - boardSize + 2 * cellSize) / 2, cellSize * 4, cellSize * 4, RAYWHITE);
     DrawRectangle((screenWidth + 5 * cellSize) / 2, (screenHeight - boardSize + 2 * cellSize) / 2, cellSize * 4, cellSize * 4, RAYWHITE);
@@ -75,10 +75,10 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     DrawCircle((screenWidth - boardSize + 4 * cellSize) / 2, (screenHeight - boardSize + 8 * cellSize) / 2, 17, playersColors[0]);
     DrawCircle((screenWidth - boardSize + 8 * cellSize) / 2, (screenHeight - boardSize + 8 * cellSize) / 2, 17, playersColors[0]);
     // circle of blue
-    DrawCircle((screenWidth - boardSize + 4 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[2]);
-    DrawCircle((screenWidth - boardSize + 8 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[2]);
-    DrawCircle((screenWidth - boardSize + 4 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[2]);
-    DrawCircle((screenWidth - boardSize + 8 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[2]);
+    DrawCircle((screenWidth - boardSize + 4 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[3]);
+    DrawCircle((screenWidth - boardSize + 8 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[3]);
+    DrawCircle((screenWidth - boardSize + 4 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[3]);
+    DrawCircle((screenWidth - boardSize + 8 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[3]);
     // circle of green
     DrawCircle((screenWidth + 7 * cellSize) / 2, (screenHeight - boardSize + 4 * cellSize) / 2, 17, playersColors[1]);
     DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight - boardSize + 4 * cellSize) / 2, 17, playersColors[1]);
@@ -86,10 +86,10 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight - boardSize + 8 * cellSize) / 2, 17, playersColors[1]);
 
     // circle of yellow
-    DrawCircle((screenWidth + 7 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[3]);
-    DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[3]);
-    DrawCircle((screenWidth + 7 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[3]);
-    DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[3]);
+    DrawCircle((screenWidth + 7 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[2]);
+    DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight + 7 * cellSize) / 2, 17, playersColors[2]);
+    DrawCircle((screenWidth + 7 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[2]);
+    DrawCircle((screenWidth + 11 * cellSize) / 2, (screenHeight + 11 * cellSize) / 2, 17, playersColors[2]);
 
     // Draw center square
     DrawRectangle((screenWidth - cellSize * 3) / 2, (screenHeight - cellSize * 3) / 2, cellSize * 3, cellSize * 3, DARKGRAY);
@@ -97,11 +97,11 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     // for red
     DrawTriangle({ (float)screenWidth / 2,(float)screenHeight / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, playersColors[0]);
     // for blue
-    DrawTriangle({ (float)screenWidth / 2,(float)screenHeight / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, playersColors[2]);
+    DrawTriangle({ (float)screenWidth / 2,(float)screenHeight / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, playersColors[3]);
     //for green
     DrawTriangle({ (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)screenWidth / 2,(float)screenHeight / 2 }, playersColors[1]);
     //for yellow
-    DrawTriangle({ (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)screenWidth / 2,(float)screenHeight / 2 }, playersColors[3]);
+    DrawTriangle({ (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)screenWidth / 2,(float)screenHeight / 2 }, playersColors[2]);
 
 }
 
