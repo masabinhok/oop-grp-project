@@ -1,67 +1,14 @@
+#pragma once
 #include "raylib.h"
 #include <cmath>
-#include <cstdlib> // For rand()
-#include <ctime>   // For time()
+#include <cstdlib> 
 
+extern const int screenWidth ;
+extern const int screenHeight ;
+extern const int boardSize ;
+extern const int cellSize ;
 
-const int screenWidth = 800;
-const int screenHeight = 800;
-const int boardSize = 600;
-const int cellSize = boardSize / 15;
-
-Color playersColors[4] = { RED, GREEN, BLUE, YELLOW };
-
-const int diceSize = 50;   // Size of the dice
-const float rollDuration = 0.5f; // Duration of dice roll animation
-
-void DrawDice(int x, int y, int value);
-
-void DrawDice(int x, int y, int value) {
-    // Draw dice body
-    DrawRectangle(x, y, diceSize, diceSize, LIGHTGRAY);
-
-    // Draw dice dots based on value
-    int dotSize = 10; // Size of dice dots
-    int dotSpacing = 20; // Space between dots
-
-    switch (value) {
-    case 1:
-        DrawCircle(x + diceSize / 2, y + diceSize / 2, dotSize, BLACK);
-        break;
-    case 2:
-        DrawCircle(x + diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        break;
-    case 3:
-        DrawCircle(x + diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + diceSize / 2, y + diceSize / 2, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        break;
-    case 4:
-        DrawCircle(x + diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        break;
-    case 5:
-        DrawCircle(x + diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + diceSize / 4, y + diceSize / 2, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 2, dotSize, BLACK);
-        DrawCircle(x + diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        break;
-    case 6:
-        DrawCircle(x + diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + diceSize / 4, y + diceSize / 2, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + diceSize / 2, dotSize, BLACK);
-        DrawCircle(x + diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        DrawCircle(x + 3 * diceSize / 4, y + 3 * diceSize / 4, dotSize, BLACK);
-        break;
-    }
-}
-
+extern const Color playersColors[4];
 
 void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     Vector2* vertices = new Vector2[points * 2];
@@ -148,64 +95,13 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
     DrawRectangle((screenWidth - cellSize * 3) / 2, (screenHeight - cellSize * 3) / 2, cellSize * 3, cellSize * 3, DARKGRAY);
     // divison of centre square
     // for red
-    DrawTriangle({ screenWidth / 2,screenHeight / 2 }, { (screenWidth - 3 * cellSize) / 2,(screenHeight - 3 * cellSize) / 2 }, { (screenWidth - 3 * cellSize) / 2,(screenHeight + 3 * cellSize) / 2 }, playersColors[0]);
+    DrawTriangle({ (float)screenWidth / 2,(float)screenHeight / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, playersColors[0]);
     // for blue
-    DrawTriangle({ screenWidth / 2,screenHeight / 2 }, { (screenWidth - 3 * cellSize) / 2,(screenHeight + 3 * cellSize) / 2 }, { (screenWidth + 3 * cellSize) / 2,(screenHeight + 3 * cellSize) / 2 }, playersColors[2]);
+    DrawTriangle({ (float)screenWidth / 2,(float)screenHeight / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, playersColors[2]);
     //for green
-    DrawTriangle({ (screenWidth + 3 * cellSize) / 2,(screenHeight - 3 * cellSize) / 2 }, { (screenWidth - 3 * cellSize) / 2,(screenHeight - 3 * cellSize) / 2 }, { screenWidth / 2,screenHeight / 2 }, playersColors[1]);
+    DrawTriangle({ (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)(screenWidth - 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)screenWidth / 2,(float)screenHeight / 2 }, playersColors[1]);
     //for yellow
-    DrawTriangle({ (screenWidth + 3 * cellSize) / 2,(screenHeight + 3 * cellSize) / 2 }, { (screenWidth + 3 * cellSize) / 2,(screenHeight - 3 * cellSize) / 2 }, { screenWidth / 2,screenHeight / 2 }, playersColors[3]);
+    DrawTriangle({ (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight + 3 * cellSize) / 2 }, { (float)(screenWidth + 3 * cellSize) / 2,(float)(screenHeight - 3 * cellSize) / 2 }, { (float)screenWidth / 2,(float)screenHeight / 2 }, playersColors[3]);
 
 }
 
-
-
-int main() {
-    InitWindow(screenWidth, screenHeight, "Ludo Game");
-    SetTargetFPS(60);
-
-    srand(static_cast<unsigned int>(time(nullptr))); // Seed the random number generator
-
-    int diceValue = 1; // Current dice value
-    bool rolling = false; // Flag for dice rolling state
-    float rollTime = 0.0f; // Timer for dice roll animation
-    float dicePosX = screenWidth / 2 - diceSize / 2;
-    float dicePosY = screenHeight / 2 - diceSize / 2;
-
-    while (!WindowShouldClose()) {
-        // Update
-        ClearBackground(RAYWHITE);
-
-        DrawLudoBoard();
-        if (IsKeyPressed(KEY_SPACE)) {
-            rolling = true;
-            rollTime = 0.0f; // Reset roll timer
-        }
-
-        if (rolling) {
-            rollTime += GetFrameTime(); // Increment roll timer
-            if (rollTime >= rollDuration) {
-                rolling = false;
-                diceValue = (rand() % 6) + 1; // Random dice value between 1 and 6
-            }
-            else {
-                // Optional: Simulate rolling by randomly changing diceValue
-                diceValue = (rand() % 6) + 1;
-            }
-        }
-
-        // Drawing
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-
-        // Draw the dice
-        DrawDice((int)dicePosX, (int)dicePosY, diceValue);
-
-        EndDrawing();
-    }
-
-    CloseWindow();
-    return 0;
-
-
-}
