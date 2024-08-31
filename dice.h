@@ -12,13 +12,17 @@ extern const int cellSize ;
 
 extern const Color playersColors[4] ;
 
+
 extern const int diceSize ;   // Size of the dice
 extern const float rollDuration ; // Duration of dice roll animation
-extern void DrawDice(int x, int y, int value);
+extern void DrawDice(int x, int y, int value, Color colour);
 
-void DrawDice(int x, int y, int value) {
+
+
+void DrawDice(int x, int y, int value, Color colour) {
     // Draw dice body
-    DrawRectangle(x, y, diceSize, diceSize, LIGHTGRAY);
+    DrawRectangle(x, y, diceSize, diceSize, colour);
+	DrawRectangleLines(x, y, diceSize, diceSize, BLACK);
 
     // Draw dice dots based on value
     int dotSize = 5; // Size of dice dots
