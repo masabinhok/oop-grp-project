@@ -5,6 +5,8 @@
 #include "raylib.h"
 #include "dice.h"
 #include "board.h"
+#include <chrono>// for time delay
+#include <thread>// for time delay
 
 //enum Color { RED, GREEN, BLUE, YELLOW };
 
@@ -231,7 +233,7 @@ private:
                 }
                 else {
                     // Optional: Simulate rolling by randomly changing diceValue
-                    diceValue = currentPlayer.rollDice();;
+                    diceValue = currentPlayer.rollDice();
                 }
             }
             BeginDrawing();
@@ -249,9 +251,85 @@ private:
         }
 
 
-        // For simplicity, we move the first piece that is available.
-        currentPlayer.movePiece(0, diceValue);
 
+        int moveIndex = 0;
+        int flag1 = 0;
+        int flag3 = 1;
+
+        //check if step is not equal to 1 and all pieces are in home then we have to skip turn for the current player
+        if (diceValue != 1) {
+            for (int i = 0; i < 4; i++) {
+                if (currentPlayer.pieces[i].isInPlay()) {
+                    flag3 = 0;
+                    break;
+                }
+            }
+        }
+        else {
+            flag3 = 0;
+        }
+
+        // if at least one player is in play or dice value is 1
+        if (flag3 == 0) {
+            while (true) {
+                int flag2 = 0;
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+                DrawLudoBoard();
+                DrawDice((int)dicePosX, (int)dicePosY, diceValue);
+
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        DrawPiece(players[i].pieces[j].getPosition(), playersColors[i]);
+                    }
+                }
+
+                for (int i = 0; i < 4; i++) {
+                    Position p = currentPlayer.pieces[i].getPosition();
+                    Vector2 CircleCenter = { static_cast<float>(p.x), static_cast<float>(p.y) };
+                    float CircleRadius1 = 23.0f;
+
+                    if (CheckCollisionPointCircle(GetMousePosition(), CircleCenter, CircleRadius1)) {
+
+
+                        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                            moveIndex = i;
+                            flag1 = 1;// user select piece
+                            // if dice not equal to 1 and piece user selecting is in home 
+                            if (diceValue != 1 && currentPlayer.pieces[moveIndex].isInHome()) {
+                               
+                                DrawText("Please select the allowed pieces ", 100, 46, 20, BLACK);
+                                // flag2 is 1 when unwanted piece is selected
+                                flag2 = 1;
+                                
+                                flag1 = 0; // as unwanted piece is selected then user should reselect valid piece
+                                
+                            }
+
+                            break;
+                        }
+                    }
+
+                }
+                EndDrawing();
+                //for the message of "please select the allowed pieces " to last 2 second in screen
+                if (flag2 == 1) {
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
+               }
+
+                // if one valid piece is selected then loop breaks
+                if (flag1 == 1) {
+                    break;
+                }
+            }
+
+        }
+
+        
+       //move piece is only run when at least one piece is moveable
+        if (flag3 == 0) {
+            currentPlayer.movePiece(moveIndex, diceValue);
+        }
         if (currentPlayer.allPiecesHome()) {
             currentPlayer.hasWon = true;
         }
