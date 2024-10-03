@@ -37,19 +37,19 @@ void DrawStar(int centerX, int centerY, int radius, int points, Color color) {
 
     //Draw stars in red home 
     DrawStar((screenWidth - boardSize + 3 * cellSize) / 2, (screenHeight - 2 * cellSize) / 2, 17.5, 5, playersColors[0]);
-    DrawStar((screenWidth - boardSize + 3 * cellSize) / 2, (screenHeight + 2 * cellSize) / 2, 17.5, 5, BLACK);
+    DrawStar((screenWidth - boardSize + 5 * cellSize) / 2, (screenHeight + 2 * cellSize) / 2, 17.5, 5, BLACK);
 
     //Draw stars in green home
     DrawStar((screenWidth + 2 * cellSize) / 2, (screenHeight - boardSize + 3 * cellSize) / 2, 17.5, 5, playersColors[1]);
-    DrawStar((screenWidth - 2 * cellSize) / 2, (screenHeight - boardSize + 3 * cellSize) / 2, 17.5, 5, BLACK);
+    DrawStar((screenWidth - 2 * cellSize) / 2, (screenHeight - boardSize + 5 * cellSize) / 2, 17.5, 5, BLACK);
 
     // draw stars in yellow home
-    DrawStar((screenWidth + boardSize - 3 * cellSize) / 2, (screenHeight - 2 * cellSize) / 2, 17.5, 5, BLACK);
+    DrawStar((screenWidth + boardSize - 5 * cellSize) / 2, (screenHeight - 2 * cellSize) / 2, 17.5, 5, BLACK);
     DrawStar((screenWidth + boardSize - 3 * cellSize) / 2, (screenHeight + 2 * cellSize) / 2, 17.5, 5, playersColors[2]);
 
     // draw stars in blue home 
-   //Draw stars in green home
-    DrawStar((screenWidth + 2 * cellSize) / 2, (screenHeight + boardSize - 3 * cellSize) / 2, 17.5, 5, BLACK);
+   
+    DrawStar((screenWidth + 2 * cellSize) / 2, (screenHeight + boardSize - 5 * cellSize) / 2, 17.5, 5, BLACK);
     DrawStar((screenWidth - 2 * cellSize) / 2, (screenHeight + boardSize - 3 * cellSize) / 2, 17.5, 5, playersColors[3]);
 
     // Draw grid lines
